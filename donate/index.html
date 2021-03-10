@@ -470,12 +470,9 @@ $(document).ready(function(){
 
   
     <div class="comments" id="comments">
-      <div id="disqus_thread">
-        <div class="disqus-loading">
-          <strong>Disqus 加载中...</strong>
-          <p>如果长时间无法加载，请针对 disq.us | disquscdn.com | disqus.com 启用代理</p>
-        </div>
-      </div>
+      
+        <div id="gitment-container"></div>
+      
     </div>
 
   
@@ -483,42 +480,6 @@ $(document).ready(function(){
 
 
 
-
-  
-
-    
-      <script type="text/javascript">
-        if (disqus_config) {
-          var disqus_config = function () {
-            this.page.url = 'https://rainminmin.github.io/donate/index.html';
-            this.page.identifier = 'donate/index.html';
-            this.page.title = 'donate';
-          };
-          if (window.DISQUS) {
-            $('.disqus-loading').remove();
-            window.DISQUS.reset({
-              reload: true,
-              config: function () {
-                this.page.url = 'https://rainminmin.github.io/donate/index.html';
-                this.page.identifier = 'donate/index.html';
-                this.page.title = 'donate';
-              }
-            });
-          }
-        }
-        else {
-          var disqus_config = function () {
-            this.page.url = 'https://rainminmin.github.io/donate/index.html';
-            this.page.identifier = 'donate/index.html';
-            this.page.title = 'donate';
-          };
-          var d = document, s = d.createElement('script');
-          s.src = 'https://diygod-me.disqus.com/embed.js';
-          s.setAttribute('data-timestamp', '' + +new Date());
-          (d.head || d.body).appendChild(s);
-        }
-      </script>
-    
 
   
 
@@ -537,8 +498,49 @@ $(document).ready(function(){
 
 
 
+  
 
 
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname, 
+            owner: 'Rainminmin',
+            repo: 'http://rainminmin.github.io/',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: '27b970377adfc51a1d848add59c2b0c42eba49aa',
+            
+                client_id: '38112e4d814ef07ab2fb'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
 
 
 
