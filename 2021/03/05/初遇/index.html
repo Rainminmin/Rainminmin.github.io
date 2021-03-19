@@ -640,7 +640,9 @@ $(document).ready(function(){
 <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
 
 <script>
-
+console.log(window.location.pathname);
+console.log(md5(window.location.pathname));
+    
   var gitalk = new Gitalk({
       clientID: '67f93bb242539c740232',
       clientSecret: '35f2e3ebd98e308786e63b7017135402f63a9278',
