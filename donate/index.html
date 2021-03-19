@@ -504,11 +504,12 @@ $(document).ready(function(){
 
 
 
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
 
 <script>
-function gitalkLoad(){
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+
+  var gitalk = new Gitalk({
     var gitalk = new Gitalk({
       clientID: '',
       clientSecret: '',
@@ -520,10 +521,9 @@ function gitalkLoad(){
       
       distractionFreeMode: ''
     });
-    gitalk.render('gitalk-container');
-  }, window.Gitalk);
-}
-window.onload = gitalkLoad;
+  })
+gitalk.render('gitalk-container');
+
 </script>
 
 
