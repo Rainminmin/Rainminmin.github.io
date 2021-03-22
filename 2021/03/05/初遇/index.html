@@ -3,7 +3,7 @@
 
 
 
-<html class="theme-next pisces" lang="en">
+<html class="theme-next pisces" lang="zh-tw">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -14,7 +14,9 @@
 
 
 
+
  <script src="/lib/md5/md5.min.js"></script>
+
 
 
 
@@ -140,7 +142,7 @@
     fancybox: true,
     tabs: true,
     motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    since: '5/3/2021 11:30:00',
+    since: '3/1/2021 11:30:00',
     onlineAPI: '',
     site: {
       title: '',
@@ -303,7 +305,32 @@ $(document).ready(function(){
             <button type="submit" class="search-submit"><i class="fa fa-search"></i></button>
           </form>
       </li>
-      <li class="menu-item online"><span class="busuanzi-value" id="busuanzi_value_site_uv"></span>人在线</li>
+      
+          <li class="menu-item online">
+            
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+          </li>
+  
     </ul>
   
 
@@ -825,39 +852,17 @@ gitalk.render('gitalk-container');
       <div class="footer-image"></div>
       <div class="footer-inner">
         <p>博客已萌萌哒运行<span id="since"></span><span class="my-face">(●'◡'●)ﾉ♥</span></p>
-<p>custom text</p>
+<p></p>
 
 <p>© <span itemprop="copyrightYear">2021</span> Hexo.
     由 <a href="https://hexo.io/" target="_blank" class="external" rel="nofollow">Hexo</a> 强力驱动.
     Theme By <a href="https://github.com/DIYgod/hexo-theme-sagiri" target="_blank" class="external" rel="nofollow">Sagiri</a> v0.0.4.
-    <a href="/sitemap.xml" target="_blank">站点地图</a>.
-    xxxx.
+    <a href="/sitemap.xml" target="_blank">站点地图</a>
+    .
 </p>
 <p>Made with <i class="fa fa-heart throb" style="color: #d43f57;"></i> by <span class="author" itemprop="copyrightHolder">John Doe</span>. </p>
 
         
-<div class="busuanzi-count">
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-  
-    <span class="site-uv">
-      <i class="fa fa-user"></i>
-      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
-      
-    </span>
-  
-
-  
-    <span class="site-pv">
-      <i class="fa fa-eye"></i>
-      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
-      
-    </span>
-  
-</div>
-
-
-
 
 
 
