@@ -50,6 +50,87 @@
 .gt-container .gt-popup .gt-action.is--active::before {
   top: 0.7em;
 }
+.head-animated {
+  -webkit-animation-duration: 0.5s;
+  -moz-animation-duration: 0.5s;
+  -o-animation-duration: 0.5s;
+  animation-duration: 0.5s;
+  -webkit-animation-fill-mode: both;
+  -moz-animation-fill-mode: both;
+  -o-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+.head-animated.slideDown {
+  -webkit-animation-name: slideDown;
+  -moz-animation-name: slideDown;
+  -o-animation-name: slideDown;
+  animation-name: slideDown;
+}
+.head-animated.slideUp {
+  -webkit-animation-name: slideUp;
+  -moz-animation-name: slideUp;
+  -o-animation-name: slideUp;
+  animation-name: slideUp;
+}
+.animated {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+.animated.hinge {
+  -webkit-animation-duration: 2s;
+  animation-duration: 2s;
+}
+.site-title .animate span {
+  position: absolute;
+  opacity: 0;
+}
+.site-title .animate svg {
+  fill: #ff9800;
+  overflow: visible;
+  text-shadow: none;
+  height: 1px;
+}
+.site-title .animate use {
+  stroke: #fff;
+  stroke-width: 13px;
+  stroke-linejoin: round;
+}
+.site-title .animate {
+  transition: 0.3s;
+  position: absolute;
+  top: 0;
+}
+.head-animated {
+  -webkit-animation-duration: 0.5s;
+  -moz-animation-duration: 0.5s;
+  -o-animation-duration: 0.5s;
+  animation-duration: 0.5s;
+  -webkit-animation-fill-mode: both;
+  -moz-animation-fill-mode: both;
+  -o-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+.head-animated.slideDown {
+  -webkit-animation-name: slideDown;
+  -moz-animation-name: slideDown;
+  -o-animation-name: slideDown;
+  animation-name: slideDown;
+}
+.head-animated.slideUp {
+  -webkit-animation-name: slideUp;
+  -moz-animation-name: slideUp;
+  -o-animation-name: slideUp;
+  animation-name: slideUp;
+}
+.site-title .guide {
+  visibility: hidden;
+  pointer-events: none;
+}
+.theme-darling .site-title {
+  text-shadow: 1px 1px 0 #ff3f1a, -1px -1px 0 #00a7e0;
+}
 /* normalize.css v3.0.2 | MIT License | git.io/normalize */
 html {
   font-family: sans-serif; /* 1 */
@@ -492,6 +573,7 @@ body {
 .container {
   position: relative;
   min-height: 100%;
+  overflow-x: hidden;
 }
 .header-inner {
   margin: 0 auto;
@@ -1152,6 +1234,8 @@ pre .javascript .function {
 .site-meta {
   margin: 0;
   text-align: center;
+  padding: 20px 0;
+  color: #fff;
 }
 @media (max-width: 991px) {
   .site-meta {
@@ -1967,7 +2051,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #8e3d0f;
+  background: #ed7d45;
 }
 .links-of-blogroll {
   font-size: 13px;
