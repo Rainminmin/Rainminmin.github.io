@@ -76,7 +76,7 @@
 
 
 
-  <meta name="keywords" content="初遇," />
+  <meta name="keywords" content="SSE," />
 
 
 
@@ -87,17 +87,17 @@
 
 
 
-<meta name="description" content="这里是Rainminmin，其实是Rainmin，后来发现被人给注册了~我是一名java开发工程师，却喜欢研究前端一些小东西。喜欢动漫、游戏、纯音乐(什么类型的都喜欢)。">
+<meta name="description" content="前端做的准备工作前端新建的EventSource对象请求一个sse，监听这个对象的message事件，然后再接收后端推送的值当后端支付成功后，这边会自动监听这个事件的状态12345678910111213&#x2F;&#x2F;判断浏览器是否支持SSEif (&#39;EventSource&#39; in window) &amp;#123;    &#x2F;&#x2F;监控支付状态    var s">
 <meta property="og:type" content="article">
-<meta property="og:title" content="初遇">
-<meta property="og:url" content="https://rainminmin.github.io/2021/03/05/%E5%88%9D%E9%81%87/index.html">
+<meta property="og:title" content="实现SSE(Server-Sent Event) 推送事件">
+<meta property="og:url" content="https://rainminmin.github.io/2021/03/05/SSE/index.html">
 <meta property="og:site_name" content="Rainmin">
-<meta property="og:description" content="这里是Rainminmin，其实是Rainmin，后来发现被人给注册了~我是一名java开发工程师，却喜欢研究前端一些小东西。喜欢动漫、游戏、纯音乐(什么类型的都喜欢)。">
+<meta property="og:description" content="前端做的准备工作前端新建的EventSource对象请求一个sse，监听这个对象的message事件，然后再接收后端推送的值当后端支付成功后，这边会自动监听这个事件的状态12345678910111213&#x2F;&#x2F;判断浏览器是否支持SSEif (&#39;EventSource&#39; in window) &amp;#123;    &#x2F;&#x2F;监控支付状态    var s">
 <meta property="og:locale">
 <meta property="article:published_time" content="2021-03-05T08:41:15.000Z">
-<meta property="article:modified_time" content="2021-03-25T09:03:06.888Z">
+<meta property="article:modified_time" content="2021-03-25T10:22:05.909Z">
 <meta property="article:author" content="Rainmin">
-<meta property="article:tag" content="初遇">
+<meta property="article:tag" content="SSE">
 <meta name="twitter:card" content="summary">
 
 
@@ -160,13 +160,13 @@
 
 
 
-  <link rel="canonical" href="https://rainminmin.github.io/2021/03/05/初遇/"/>
+  <link rel="canonical" href="https://rainminmin.github.io/2021/03/05/SSE/"/>
 
 
 
 
 
-  <title>初遇 | Rainmin</title>
+  <title>实现SSE(Server-Sent Event) 推送事件 | Rainmin</title>
   
 
 
@@ -409,8 +409,8 @@
   <div class="post-badge">
     
       <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-        <a href="/categories/%E7%A2%8E%E7%A2%8E%E5%BF%B5/" itemprop="url" rel="index">
-          <span itemprop="name">碎碎念</span>
+        <a href="/categories/Java/" itemprop="url" rel="index">
+          <span itemprop="name">Java</span>
         </a>
       </span>
     
@@ -418,7 +418,7 @@
   
 
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://rainminmin.github.io/2021/03/05/%E5%88%9D%E9%81%87/">
+    <link itemprop="mainEntityOfPage" href="https://rainminmin.github.io/2021/03/05/SSE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -435,7 +435,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">初遇</h1>
+          <h1 class="post-title" itemprop="name headline">实现SSE(Server-Sent Event) 推送事件</h1>
         
 
         <div class="post-meta">
@@ -467,7 +467,7 @@
                 
                   <span class="post-meta-item-text">字数统计</span>
                 
-                <span title="字数统计">57</span>
+                <span title="字数统计">417</span>
               
 
               
@@ -500,12 +500,20 @@
     
     
     <div class="post-body" itemprop="articleBody">
-      
+      <div class="post-toc-content"><div class="post-toc-title">文章目录</div><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E7%AB%AF%E5%81%9A%E7%9A%84%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="nav-text">前端做的准备工作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%8D%E7%AB%AF%E6%96%B0%E5%BB%BA%E7%9A%84EventSource%E5%AF%B9%E8%B1%A1%E8%AF%B7%E6%B1%82%E4%B8%80%E4%B8%AAsse%EF%BC%8C%E7%9B%91%E5%90%AC%E8%BF%99%E4%B8%AA%E5%AF%B9%E8%B1%A1%E7%9A%84message%E4%BA%8B%E4%BB%B6%EF%BC%8C%E7%84%B6%E5%90%8E%E5%86%8D%E6%8E%A5%E6%94%B6%E5%90%8E%E7%AB%AF%E6%8E%A8%E9%80%81%E7%9A%84%E5%80%BC"><span class="nav-text">前端新建的EventSource对象请求一个sse，监听这个对象的message事件，然后再接收后端推送的值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BD%93%E5%90%8E%E7%AB%AF%E6%94%AF%E4%BB%98%E6%88%90%E5%8A%9F%E5%90%8E%EF%BC%8C%E8%BF%99%E8%BE%B9%E4%BC%9A%E8%87%AA%E5%8A%A8%E7%9B%91%E5%90%AC%E8%BF%99%E4%B8%AA%E4%BA%8B%E4%BB%B6%E7%9A%84%E7%8A%B6%E6%80%81"><span class="nav-text">当后端支付成功后，这边会自动监听这个事件的状态</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%8E%E7%AB%AF%E5%81%9A%E7%9A%84%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="nav-text">后端做的准备工作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%8E%E7%AB%AF%E6%8E%A5%E6%94%B6%E5%88%B0%E5%89%8D%E7%AB%AF%E7%9A%84%E8%AF%B7%E6%B1%82%EF%BC%8C%E4%BC%9A%E8%BF%94%E5%9B%9E%E4%B8%80%E4%B8%AASseEmitter%E5%AF%B9%E8%B1%A1%EF%BC%8C%E5%A6%82%E6%9E%9C%E5%90%8E%E7%BB%AD%E5%90%8E%E5%8F%B0%E6%9C%89%E5%9C%A8%E8%BF%99%E4%B8%AA%E5%AF%B9%E8%B1%A1%E4%B8%8Asend%EF%BC%8C%E5%88%99%E4%BC%9A%E8%A2%AB%E7%9B%91%E5%90%AC%E5%88%B0%E8%AF%A5%E7%8A%B6%E6%80%81"><span class="nav-text">后端接收到前端的请求，会返回一个SseEmitter对象，如果后续后台有在这个对象上send，则会被监听到该状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%82%A8%E5%AD%98SseEmitter%E5%92%8C%E7%9B%91%E5%90%AC"><span class="nav-text">储存SseEmitter和监听</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AF%8F%E6%AC%A1%E4%BA%8B%E4%BB%B6%E7%9A%84%E5%AF%B9%E8%B1%A1"><span class="nav-text">每次事件的对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8%E6%94%AF%E4%BB%98%E6%88%90%E5%8A%9F%E5%90%8E%EF%BC%8C%E5%88%99%E9%80%9A%E7%9F%A5"><span class="nav-text">在支付成功后，则通知</span></a></li></ol></li></ol></div>
       
       
 
       
-        <p>这里是Rainminmin，其实是Rainmin，后来发现被人给注册了~<br>我是一名java开发工程师，却喜欢研究前端一些小东西。<br>喜欢动漫、游戏、纯音乐(什么类型的都喜欢)。</p>
+        <h2 id="前端做的准备工作"><a href="#前端做的准备工作" class="headerlink" title="前端做的准备工作"></a>前端做的准备工作</h2><h3 id="前端新建的EventSource对象请求一个sse，监听这个对象的message事件，然后再接收后端推送的值"><a href="#前端新建的EventSource对象请求一个sse，监听这个对象的message事件，然后再接收后端推送的值" class="headerlink" title="前端新建的EventSource对象请求一个sse，监听这个对象的message事件，然后再接收后端推送的值"></a>前端新建的EventSource对象请求一个sse，监听这个对象的message事件，然后再接收后端推送的值</h3><h3 id="当后端支付成功后，这边会自动监听这个事件的状态"><a href="#当后端支付成功后，这边会自动监听这个事件的状态" class="headerlink" title="当后端支付成功后，这边会自动监听这个事件的状态"></a>当后端支付成功后，这边会自动监听这个事件的状态</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;判断浏览器是否支持SSE</span><br><span class="line">if (&#39;EventSource&#39; in window) &#123;</span><br><span class="line">    &#x2F;&#x2F;监控支付状态</span><br><span class="line">    var source &#x3D; new EventSource(&#39;&#x2F;sse&#x2F;orderPush&#x2F;&#39; + orderId);</span><br><span class="line">    source.addEventListener(&#39;message&#39;, function (evt) &#123;</span><br><span class="line">        var data &#x3D; JSON.parse(evt.data);</span><br><span class="line">        if (data.code &#x3D;&#x3D;&#x3D; 200) &#123;</span><br><span class="line">            source.close();</span><br><span class="line">            &#x2F;&#x2F;支付成功后的操作</span><br><span class="line">            checkPayResult(orderId);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;, false);</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+
+<h2 id="后端做的准备工作"><a href="#后端做的准备工作" class="headerlink" title="后端做的准备工作"></a>后端做的准备工作</h2><h3 id="后端接收到前端的请求，会返回一个SseEmitter对象，如果后续后台有在这个对象上send，则会被监听到该状态"><a href="#后端接收到前端的请求，会返回一个SseEmitter对象，如果后续后台有在这个对象上send，则会被监听到该状态" class="headerlink" title="后端接收到前端的请求，会返回一个SseEmitter对象，如果后续后台有在这个对象上send，则会被监听到该状态"></a>后端接收到前端的请求，会返回一个SseEmitter对象，如果后续后台有在这个对象上send，则会被监听到该状态</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">@RestController</span><br><span class="line">@RequestMapping(&quot;&#x2F;sse&quot;)</span><br><span class="line">public class SseController &#123;</span><br><span class="line"></span><br><span class="line">    @Resource</span><br><span class="line">    private PayCompletedListener payCompletedListener;</span><br><span class="line"></span><br><span class="line">    @GetMapping(path &#x3D; &quot;&#x2F;orderPush&#x2F;&#123;orderId&#125;&quot;, produces &#x3D; MediaType.TEXT_EVENT_STREAM_VALUE)</span><br><span class="line">    public SseEmitter orderPush(@PathVariable String orderId) &#123;</span><br><span class="line">        final SseEmitter emitter &#x3D; new SseEmitter();</span><br><span class="line">        try &#123;</span><br><span class="line">            payCompletedListener.addSseEmitters(orderId, emitter);</span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line">            emitter.completeWithError(e);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return emitter;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="储存SseEmitter和监听"><a href="#储存SseEmitter和监听" class="headerlink" title="储存SseEmitter和监听"></a>储存SseEmitter和监听</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">@Component</span><br><span class="line">public class PayCompletedListener &#123;</span><br><span class="line">    private static Map&lt;String, SseEmitter&gt; sseEmitters &#x3D; new Hashtable&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">    * 储存SseEmitter</span><br><span class="line">    * @param orderId 订单id</span><br><span class="line">    * @param sseEmitter SseEmitter</span><br><span class="line">    *&#x2F;</span><br><span class="line">    public void addSseEmitters(String orderId, SseEmitter sseEmitter) &#123;</span><br><span class="line">        sseEmitters.put(orderId, sseEmitter);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">    * 负责监听事件</span><br><span class="line">    *</span><br><span class="line">    * @param payCompletedEvent 事件对象</span><br><span class="line">    * @throws IOException</span><br><span class="line">    *&#x2F;</span><br><span class="line">    @EventListener</span><br><span class="line">    public void deployEventHandler(PayCompletedEvent payCompletedEvent) throws IOException &#123;</span><br><span class="line">        String orderId &#x3D; payCompletedEvent.getOrderId();</span><br><span class="line">        SseEmitter sseEmitter &#x3D; sseEmitters.get(orderId);</span><br><span class="line">        sseEmitter.send(R.ok(&quot;支付成功!&quot;));</span><br><span class="line">        sseEmitter.complete();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="每次事件的对象"><a href="#每次事件的对象" class="headerlink" title="每次事件的对象"></a>每次事件的对象</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">@Getter</span><br><span class="line">@Setter</span><br><span class="line">public class PayCompletedEvent extends ApplicationEvent &#123;</span><br><span class="line">    private String orderId;</span><br><span class="line"></span><br><span class="line">    public PayCompletedEvent(Object source, String orderId) &#123;</span><br><span class="line">        super(source);</span><br><span class="line">        this.orderId &#x3D; orderId;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="在支付成功后，则通知"><a href="#在支付成功后，则通知" class="headerlink" title="在支付成功后，则通知"></a>在支付成功后，则通知</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;发送sse通知已经支付成功了</span><br><span class="line">applicationContext.publishEvent(new PayCompletedEvent(this, orderId));</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -556,7 +564,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/%E5%88%9D%E9%81%87/" rel="tag"># 初遇</a>
+            <a href="/tags/SSE/" rel="tag"># SSE</a>
           
         </div>
       
@@ -569,15 +577,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2021/03/05/%E5%88%9D%E9%81%87/" rel="next" title="初遇">
+                <i class="fas fa-angle-left"></i> 初遇
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2021/03/05/SSE/" rel="prev" title="实现SSE(Server-Sent Event) 推送事件">
-                实现SSE(Server-Sent Event) 推送事件 <i class="fas fa-angle-right"></i>
-              </a>
             
           </div>
         </div>
@@ -679,8 +687,17 @@ gitalk.render('gitalk-container');
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            关于我
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -760,6 +777,22 @@ gitalk.render('gitalk-container');
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E7%AB%AF%E5%81%9A%E7%9A%84%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="nav-number">1.</span> <span class="nav-text">前端做的准备工作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%8D%E7%AB%AF%E6%96%B0%E5%BB%BA%E7%9A%84EventSource%E5%AF%B9%E8%B1%A1%E8%AF%B7%E6%B1%82%E4%B8%80%E4%B8%AAsse%EF%BC%8C%E7%9B%91%E5%90%AC%E8%BF%99%E4%B8%AA%E5%AF%B9%E8%B1%A1%E7%9A%84message%E4%BA%8B%E4%BB%B6%EF%BC%8C%E7%84%B6%E5%90%8E%E5%86%8D%E6%8E%A5%E6%94%B6%E5%90%8E%E7%AB%AF%E6%8E%A8%E9%80%81%E7%9A%84%E5%80%BC"><span class="nav-number">1.1.</span> <span class="nav-text">前端新建的EventSource对象请求一个sse，监听这个对象的message事件，然后再接收后端推送的值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BD%93%E5%90%8E%E7%AB%AF%E6%94%AF%E4%BB%98%E6%88%90%E5%8A%9F%E5%90%8E%EF%BC%8C%E8%BF%99%E8%BE%B9%E4%BC%9A%E8%87%AA%E5%8A%A8%E7%9B%91%E5%90%AC%E8%BF%99%E4%B8%AA%E4%BA%8B%E4%BB%B6%E7%9A%84%E7%8A%B6%E6%80%81"><span class="nav-number">1.2.</span> <span class="nav-text">当后端支付成功后，这边会自动监听这个事件的状态</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%8E%E7%AB%AF%E5%81%9A%E7%9A%84%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="nav-number">2.</span> <span class="nav-text">后端做的准备工作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%8E%E7%AB%AF%E6%8E%A5%E6%94%B6%E5%88%B0%E5%89%8D%E7%AB%AF%E7%9A%84%E8%AF%B7%E6%B1%82%EF%BC%8C%E4%BC%9A%E8%BF%94%E5%9B%9E%E4%B8%80%E4%B8%AASseEmitter%E5%AF%B9%E8%B1%A1%EF%BC%8C%E5%A6%82%E6%9E%9C%E5%90%8E%E7%BB%AD%E5%90%8E%E5%8F%B0%E6%9C%89%E5%9C%A8%E8%BF%99%E4%B8%AA%E5%AF%B9%E8%B1%A1%E4%B8%8Asend%EF%BC%8C%E5%88%99%E4%BC%9A%E8%A2%AB%E7%9B%91%E5%90%AC%E5%88%B0%E8%AF%A5%E7%8A%B6%E6%80%81"><span class="nav-number">2.1.</span> <span class="nav-text">后端接收到前端的请求，会返回一个SseEmitter对象，如果后续后台有在这个对象上send，则会被监听到该状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%82%A8%E5%AD%98SseEmitter%E5%92%8C%E7%9B%91%E5%90%AC"><span class="nav-number">2.2.</span> <span class="nav-text">储存SseEmitter和监听</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AF%8F%E6%AC%A1%E4%BA%8B%E4%BB%B6%E7%9A%84%E5%AF%B9%E8%B1%A1"><span class="nav-number">2.3.</span> <span class="nav-text">每次事件的对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8%E6%94%AF%E4%BB%98%E6%88%90%E5%8A%9F%E5%90%8E%EF%BC%8C%E5%88%99%E9%80%9A%E7%9F%A5"><span class="nav-number">2.4.</span> <span class="nav-text">在支付成功后，则通知</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
