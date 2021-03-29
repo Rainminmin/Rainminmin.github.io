@@ -86,16 +86,16 @@
 
 
 
-<meta name="description" content="前端做的准备工作前端新建的EventSource对象请求一个sse，监听这个对象的message事件，然后再接收后端发送过来的消息当后端支付成功后，这边会自动监听这个事件的状态12345678910111213&#x2F;&#x2F;判断浏览器是否支持SSEif (&#39;EventSource&#39; in window) &amp;#123;    &#x2F;&#x2F;监控支付状态    va">
+<meta name="description" content="var ap &#x3D; new APlayer({             element: document.getElementById(&quot;aplayer-oVKUxSYe&quot;),             narrow: false,             autoplay: false,             s">
 <meta property="og:type" content="article">
 <meta property="og:title" content="实现SSE(Server-Sent Event) 推送事件">
 <meta property="og:url" content="https://rainminmin.github.io/2021/03/26/SSE/index.html">
 <meta property="og:site_name" content="Rainmin">
-<meta property="og:description" content="前端做的准备工作前端新建的EventSource对象请求一个sse，监听这个对象的message事件，然后再接收后端发送过来的消息当后端支付成功后，这边会自动监听这个事件的状态12345678910111213&#x2F;&#x2F;判断浏览器是否支持SSEif (&#39;EventSource&#39; in window) &amp;#123;    &#x2F;&#x2F;监控支付状态    va">
+<meta property="og:description" content="var ap &#x3D; new APlayer({             element: document.getElementById(&quot;aplayer-oVKUxSYe&quot;),             narrow: false,             autoplay: false,             s">
 <meta property="og:locale">
 <meta property="og:image" content="https://rainminmin.github.io/images/wz/pkq.jpg">
 <meta property="article:published_time" content="2021-03-26T09:41:08.000Z">
-<meta property="article:modified_time" content="2021-03-26T02:56:21.527Z">
+<meta property="article:modified_time" content="2021-03-29T09:09:08.120Z">
 <meta property="article:author" content="Rainmin">
 <meta property="article:tag" content="SSE">
 <meta name="twitter:card" content="summary">
@@ -186,7 +186,9 @@
 
 
 
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.3.0"><link rel="stylesheet" href="\assets\css\APlayer.min.css" class="aplayer-style-marker">
+<script src="\assets\js\APlayer.min.js" class="aplayer-script-marker"></script>
+</head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans" class="theme-darling">
 
@@ -506,7 +508,28 @@
       
 
       
-        <h2 id="前端做的准备工作"><a href="#前端做的准备工作" class="headerlink" title="前端做的准备工作"></a>前端做的准备工作</h2><h3 id="前端新建的EventSource对象请求一个sse，监听这个对象的message事件，然后再接收后端发送过来的消息"><a href="#前端新建的EventSource对象请求一个sse，监听这个对象的message事件，然后再接收后端发送过来的消息" class="headerlink" title="前端新建的EventSource对象请求一个sse，监听这个对象的message事件，然后再接收后端发送过来的消息"></a>前端新建的EventSource对象请求一个sse，监听这个对象的message事件，然后再接收后端发送过来的消息</h3><h3 id="当后端支付成功后，这边会自动监听这个事件的状态"><a href="#当后端支付成功后，这边会自动监听这个事件的状态" class="headerlink" title="当后端支付成功后，这边会自动监听这个事件的状态"></a>当后端支付成功后，这边会自动监听这个事件的状态</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;判断浏览器是否支持SSE</span><br><span class="line">if (&#39;EventSource&#39; in window) &#123;</span><br><span class="line">    &#x2F;&#x2F;监控支付状态</span><br><span class="line">    var source &#x3D; new EventSource(&#39;&#x2F;sse&#x2F;orderPush&#x2F;&#39; + orderId);</span><br><span class="line">    source.addEventListener(&#39;message&#39;, function (evt) &#123;</span><br><span class="line">        var data &#x3D; JSON.parse(evt.data);</span><br><span class="line">        if (data.code &#x3D;&#x3D;&#x3D; 200) &#123;</span><br><span class="line">            source.close();</span><br><span class="line">            &#x2F;&#x2F;支付成功后的操作</span><br><span class="line">            checkPayResult(orderId);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;, false);</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+        
+        <div id="aplayer-oVKUxSYe" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
+            <pre class="aplayer-lrc-content"></pre>
+        </div>
+        <script>
+          var ap = new APlayer({
+            element: document.getElementById("aplayer-oVKUxSYe"),
+            narrow: false,
+            autoplay: false,
+            showlrc: false,
+            music: {
+              title: "夕颜",
+              author: "能登麻美子",
+              url: "https://webfs.yun.kugou.com/202103291707/0b3aa3094c8695eed450ce8ebc4c1d69/G192/M0B/01/09/oJQEAF5jgkaACq5GACWUUsRkcA8783.mp3",
+              pic: "https://imgessl.kugou.com/uploadpic/softhead/400/20140411/20140411182558407258.jpg",
+              lrc: ""
+            }
+          });
+          window.aplayers || (window.aplayers = []);
+          window.aplayers.push(ap);
+        </script>
+<h2 id="前端做的准备工作"><a href="#前端做的准备工作" class="headerlink" title="前端做的准备工作"></a>前端做的准备工作</h2><h3 id="前端新建的EventSource对象请求一个sse，监听这个对象的message事件，然后再接收后端发送过来的消息"><a href="#前端新建的EventSource对象请求一个sse，监听这个对象的message事件，然后再接收后端发送过来的消息" class="headerlink" title="前端新建的EventSource对象请求一个sse，监听这个对象的message事件，然后再接收后端发送过来的消息"></a>前端新建的EventSource对象请求一个sse，监听这个对象的message事件，然后再接收后端发送过来的消息</h3><h3 id="当后端支付成功后，这边会自动监听这个事件的状态"><a href="#当后端支付成功后，这边会自动监听这个事件的状态" class="headerlink" title="当后端支付成功后，这边会自动监听这个事件的状态"></a>当后端支付成功后，这边会自动监听这个事件的状态</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;判断浏览器是否支持SSE</span><br><span class="line">if (&#39;EventSource&#39; in window) &#123;</span><br><span class="line">    &#x2F;&#x2F;监控支付状态</span><br><span class="line">    var source &#x3D; new EventSource(&#39;&#x2F;sse&#x2F;orderPush&#x2F;&#39; + orderId);</span><br><span class="line">    source.addEventListener(&#39;message&#39;, function (evt) &#123;</span><br><span class="line">        var data &#x3D; JSON.parse(evt.data);</span><br><span class="line">        if (data.code &#x3D;&#x3D;&#x3D; 200) &#123;</span><br><span class="line">            source.close();</span><br><span class="line">            &#x2F;&#x2F;支付成功后的操作</span><br><span class="line">            checkPayResult(orderId);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;, false);</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
 <a id="more"></a>
 
 <h2 id="后端做的准备工作"><a href="#后端做的准备工作" class="headerlink" title="后端做的准备工作"></a>后端做的准备工作</h2><h3 id="后端接收到前端的请求，会返回一个SseEmitter对象，如果后续后台有在这个对象上send，则会被监听到该状态"><a href="#后端接收到前端的请求，会返回一个SseEmitter对象，如果后续后台有在这个对象上send，则会被监听到该状态" class="headerlink" title="后端接收到前端的请求，会返回一个SseEmitter对象，如果后续后台有在这个对象上send，则会被监听到该状态"></a>后端接收到前端的请求，会返回一个SseEmitter对象，如果后续后台有在这个对象上send，则会被监听到该状态</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">@RestController</span><br><span class="line">@RequestMapping(&quot;&#x2F;sse&quot;)</span><br><span class="line">public class SseController &#123;</span><br><span class="line"></span><br><span class="line">    @Resource</span><br><span class="line">    private PayCompletedListener payCompletedListener;</span><br><span class="line"></span><br><span class="line">    @GetMapping(path &#x3D; &quot;&#x2F;orderPush&#x2F;&#123;orderId&#125;&quot;, produces &#x3D; MediaType.TEXT_EVENT_STREAM_VALUE)</span><br><span class="line">    public SseEmitter orderPush(@PathVariable String orderId) &#123;</span><br><span class="line">        final SseEmitter emitter &#x3D; new SseEmitter();</span><br><span class="line">        try &#123;</span><br><span class="line">            payCompletedListener.addSseEmitters(orderId, emitter);</span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line">            emitter.completeWithError(e);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return emitter;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
