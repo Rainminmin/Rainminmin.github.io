@@ -1948,7 +1948,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #86ffdf;
+  background: #ffd630;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -5585,7 +5585,8 @@ a {
 .theme-darling .post-meta .post-wordcount a {
   color: #000;
 }
-.theme-darling .post-meta .leancloud_visitors {
+.theme-darling .post-meta .leancloud_visitors,
+.theme-darling .post-meta .page-pv {
   color: #ff3f1a;
 }
 .theme-darling .site-state-posts .site-state-item-name {
